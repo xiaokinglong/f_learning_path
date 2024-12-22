@@ -4,13 +4,33 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Flutter 语言基础 -- 梦始之地
 
-A few resources to get you started if this is your first Flutter project:
+#### 类的定义和使用
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```dart
+class Math {
+  int start;
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  Math(
+    this.start,
+  );
+
+  void cnsoleStart(value) {
+    print(start);
+    print(value);
+  }
+
+  // 使用get 来设置一个获取 value 的方法
+  int get value {
+    return start + 1;
+  }
+
+  // 使用set 来设置一个修改 start 的方法
+  set add(int name) {
+    print('name: $name');
+    start = name;
+  }
+}
+
+```
