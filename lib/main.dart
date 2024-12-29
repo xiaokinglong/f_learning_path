@@ -1,3 +1,4 @@
+import 'package:f_learning_path/widget/Counter/index.dart';
 import 'package:flutter/material.dart';
 
 // 定义一个 类
@@ -26,11 +27,6 @@ class Math {
 }
 
 void main() {
-  final math = new Math(1);
-  math.cnsoleStart(12);
-  print(math.value);
-  math.add = 3;
-  print(math.value);
   runApp(const MyApp());
 }
 
@@ -79,12 +75,16 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            Counter(
+              count: _counter,
+              height: 30,
+              duration: Duration(
+                seconds: 2,
+              ),
+              style: const TextStyle(
+                fontSize: 20,
+                color: Colors.red,
+              ),
             ),
           ],
         ),
