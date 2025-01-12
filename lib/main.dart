@@ -1,3 +1,5 @@
+import 'package:f_learning_path/pages/http_page/index.dart';
+import 'package:f_learning_path/pages/screen_page/index.dart';
 import 'package:f_learning_path/widget/Counter/index.dart';
 import 'package:flutter/material.dart';
 
@@ -41,7 +43,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: ScreenPage(),
+      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -55,13 +58,31 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
   int _counter = 0;
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: Duration(seconds: 1),
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller?.dispose();
+    super.dispose();
+  }
 
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
+    _controller?.repeat();
   }
 
   @override
@@ -86,6 +107,25 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Colors.red,
               ),
             ),
+            AnimatedBuilder(
+              animation: _controller,
+              builder: (context, child) {
+                final val = Tween(
+                  begin: 0.0,
+                  end: 1.0,
+                ).animate(_controller);
+                return Container(
+                  width: 100,
+                  height: _controller.value * 100,
+                  color: Colors.red,
+                );
+              },
+              // child: Container(
+              //   width: 100,
+              //   height: 100,
+              //   color: Colors.red,
+              // ),
+            )
           ],
         ),
       ),
@@ -94,6 +134,49 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class Demo extends StatefulWidget {
+  const Demo({super.key});
+
+  @override
+  State<Demo> createState() => _DemoState();
+}
+
+class _DemoState extends State<Demo> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _controller = AnimationController(
+      duration: Duration(seconds: 1),
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: AnimatedBuilder(
+        animation: _controller,
+        builder: (context, child) {
+          return Container(
+            width: 100,
+            height: 100,
+            color: Colors.red,
+          );
+        },
+      ),
     );
   }
 }
