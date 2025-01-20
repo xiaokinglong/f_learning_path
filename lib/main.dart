@@ -1,4 +1,5 @@
 import 'package:f_learning_path/pages/http_page/index.dart';
+import 'package:f_learning_path/pages/map_page/index.dart';
 import 'package:f_learning_path/pages/screen_page/index.dart';
 import 'package:f_learning_path/widget/Counter/index.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +44,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: ScreenPage(),
+      debugShowCheckedModeBanner: false,
+      // home: ScreenPage(),
+      home: MapPage(),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
